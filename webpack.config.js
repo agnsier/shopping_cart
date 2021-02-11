@@ -23,22 +23,24 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.s[ac]ss$/i,
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
+          "style-loader",
+          "css-loader",
+          "sass-loader",
         ],
       },
+      {
+        test: /\.ico$/,
+        loader: 'file-loader'
+      }
     ],
   },
   devServer: devServerConfig,
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
+      favicon: './src/assets/favicon.ico',
     }),
   ],
 };

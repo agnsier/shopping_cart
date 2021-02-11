@@ -1,0 +1,15 @@
+@import "master";
+.container {
+    max-width: 120rem;
+    margin: 8rem;
+    background-color: $background-color;
+    min-height: 80%;
+  }
+
+  @media only screen and (max-width: 75em) {
+    .container {
+      margin: 0;
+      max-width: 100%;
+      width: 100%;
+    }
+  }

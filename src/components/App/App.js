@@ -1,16 +1,13 @@
 import React from 'react';
-import './App.css';
+import '../../sass/App.scss';
+import ProductsList from "../Products/ProductsList";
 
 const App = () => {
-
-  return (
-    <div className="container">
-      <h3>Lista produktów</h3>
-      <ul>
-        <li className="row">Patelnia, cena: 89,99zł</li>
-      </ul>
-    </div>
-  );
+    return (
+        <div className="container">
+            <ProductsList/>
+        </div>
+    );
 };
 
 export {

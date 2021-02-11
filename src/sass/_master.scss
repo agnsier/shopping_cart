@@ -1,0 +1,29 @@
+$primary-color: #00adb5;
+$secondary-color: #393e46;
+$ternary-color: #222831;
+$background-color: #eeee;
+:root {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1 rem = 10px, 10px/16px(default size) = 62,5%
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    background-color: $secondary-color;
+    min-height: 100%;
+  }
+}
