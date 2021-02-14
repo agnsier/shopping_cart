@@ -1,38 +1,59 @@
 @import "master";
 .container {
-    max-width: 120rem;
-    margin: 8rem;
+    max-width: 100%;
+    margin: 0 10%;
     background-color: $background-color;
     min-height: 80%;
-  }
-
-  @media only screen and (max-width: 75em) {
-    .container {
-      margin: 0;
-      max-width: 100%;
-      width: 100%;
-    }
   }
 
 .products{
   display: flex;
   flex-direction: column;
-  margin: 2rem;
+  margin: 0 0.5rem;
   &__title {
     font-size: 1.5rem;
     margin: 1rem 0;
     font-family: inherit;
     color: $secondary-color;
     padding: 1.5rem 0;
+    font-weight: 600;
   }
-  &__list{
-    padding: 1.5rem 0;
-  }
-  &__row{
+  &__summary{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-between;
+    color: $primary-color;
+    font-weight: 600;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+  }
+}
+.products-list{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0.5rem 0;
+  &__row{
+    display: grid;
+    grid-template-columns: 54% 26% 20%;
+    grid-gap: 1px;
+    padding: 0.1rem;
+    border-bottom: 1px solid #393e46;
     align-items: center;
   }
+  &__name{
+    color: $secondary-color;
+    font-weight: 400;
+    margin-right: auto;
+  }
+  &__price{
+    color: $primary-color;
+    font-weight: 600;
+    text-align: right;
+  }
+}
+.centered-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
