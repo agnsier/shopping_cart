@@ -1,15 +1,17 @@
 @import "master";
-.container {
-    max-width: 100%;
-    margin: 0 10%;
-    background-color: $background-color;
-    min-height: 80%;
-  }
 
-.products{
+.container {
+  max-width: 100%;
+  margin: 0 10%;
+  background-color: $background-color;
+  min-height: 80%;
+}
+
+.products {
   display: flex;
   flex-direction: column;
   margin: 0 0.5rem;
+
   &__title {
     font-size: 1.5rem;
     margin: 1rem 0;
@@ -18,7 +20,8 @@
     padding: 1.5rem 0;
     font-weight: 600;
   }
-  &__summary{
+
+  &__summary {
     display: flex;
     justify-content: space-between;
     color: $primary-color;
@@ -27,12 +30,14 @@
     margin-bottom: 1rem;
   }
 }
-.products-list{
+
+.products-list {
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0.5rem 0;
-  &__row{
+
+  &__row {
     display: grid;
     grid-template-columns: 54% 26% 20%;
     grid-gap: 1px;
@@ -40,18 +45,21 @@
     border-bottom: 1px solid #393e46;
     align-items: center;
   }
-  &__name{
+
+  &__name {
     color: $secondary-color;
     font-weight: 400;
     margin-right: auto;
   }
-  &__price{
+
+  &__price {
     color: $primary-color;
     font-weight: 600;
     text-align: right;
   }
 }
-.centered-container{
+
+.centered-container {
   position: fixed;
   top: 50%;
   left: 50%;
