@@ -38,7 +38,7 @@ export const changeProductQuantity = (pid, min, max, quantity) => {
     },
   };
 };
-export const getProductsRequest = () => {
+export const getProducts = () => {
   return (dispatch) => {
     dispatch(getProductsStarted());
     getShoppingCart(dispatch);

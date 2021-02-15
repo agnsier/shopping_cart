@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "../../sass/App.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getProductsRequest,
+  getProducts,
   validateProductQuantity,
 } from "../../redux/actions/products";
 import ProductCounter from "../Products/ProductCounter";
@@ -10,7 +10,7 @@ import ProductCounter from "../Products/ProductCounter";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProductsRequest());
+    dispatch(getProducts());
   }, []);
   const products = useSelector((state) => state.shoppingCart.products);
   const summary = useSelector((state) => state.shoppingCart.summary);
