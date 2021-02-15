@@ -1,8 +1,8 @@
 import {
-  GET_PRODUCTS,
+  GET_PRODUCTS_STARTED,
   GET_PRODUCTS_FAILED,
-  GET_PRODUCTS_SUCCESS,
-  CHANGE_PRODUCT_AMOUNT,
+  GET_PRODUCTS_SUCCEEDED,
+  CHANGE_PRODUCT_QUANTITY,
 } from "../actions/products";
 
 const initialState = {
@@ -16,13 +16,13 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_PRODUCTS: {
+    case GET_PRODUCTS_STARTED: {
       return {
         ...state,
         products: { ...state.products, loading: true },
       };
     }
-    case GET_PRODUCTS_SUCCESS: {
+    case GET_PRODUCTS_SUCCEEDED: {
       const { products } = action.payload;
       const summary = products.map((product) => {
         return {
@@ -49,7 +49,7 @@ export default function (state = initialState, action) {
         products: { ...state.products, loading: false, error },
       };
     }
-    case CHANGE_PRODUCT_AMOUNT: {
+    case CHANGE_PRODUCT_QUANTITY: {
       const pid = action.payload.pid;
       const min = action.payload.min;
       const max = action.payload.max;

@@ -1,18 +1,17 @@
-export const GET_PRODUCTS = "GET_PRODUCTS";
-export const GET_PRODUCTS_SUCCESS = "GET_PRODUCTS_SUCCESS";
+export const GET_PRODUCTS_STARTED = "GET_PRODUCTS_STARTED";
+export const GET_PRODUCTS_SUCCEEDED = "GET_PRODUCTS_SUCCEEDED";
 export const GET_PRODUCTS_FAILED = "GET_PRODUCTS_FAILED";
-export const CHANGE_PRODUCT_AMOUNT = "CHANGE_PRODUCT_AMOUNT";
-export const DECREMENT_PRODUCT_AMOUNT = "DECREMENT_PRODUCT_AMOUNT";
+export const CHANGE_PRODUCT_QUANTITY = "CHANGE_PRODUCT_QUANTITY";
 
-export const getProducts = () => {
+export const getProductsStarted = () => {
   return {
-    type: GET_PRODUCTS,
+    type: GET_PRODUCTS_STARTED,
   };
 };
 
-export const getProductsSuccess = (products) => {
+export const getProductsSucceeded = (products) => {
   return {
-    type: GET_PRODUCTS_SUCCESS,
+    type: GET_PRODUCTS_SUCCEEDED,
     payload: {
       products,
     },
@@ -26,63 +25,14 @@ export const getProductsFailed = (error) => {
   };
 };
 
-export const changeProductAmount = (pid, min, max, quantity) => {
+export const changeProductQuantity = (pid, min, max, quantity) => {
   return {
-    type: CHANGE_PRODUCT_AMOUNT,
+    type: CHANGE_PRODUCT_QUANTITY,
     payload: {
       pid,
       min,
       max,
       quantity,
     },
-  };
-};
-
-export const decrementProductAmount = ({ pid, min, max, quantity }) => {
-  return {
-    type: DECREMENT_PRODUCT_AMOUNT,
-    payload: {
-      pid,
-      min,
-      max,
-      quantity,
-    },
-  };
-};
-
-export const getProductsRequest = () => {
-  return (dispatch) => {
-    dispatch(getProducts());
-    fetch("/api/cart")
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          dispatch(getProductsFailed("Some error happened"));
-        }
-      })
-      .then((data) => {
-        dispatch(getProductsSuccess(data));
-      })
-      .catch(() => dispatch(getProductsFailed("Some error happened")));
-  };
-};
-export const checkRequest = (pid, min, max, quantity) => {
-  return (dispatch) => {
-    fetch("/api/product/check", {
-      method: "POST",
-      body: JSON.stringify({
-        pid,
-        quantity,
-      }),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          dispatch(changeProductAmount(pid, min, max, quantity));
-        } else {
-          dispatch(changeProductAmount(pid, min, max, min));
-        }
-      })
-      .catch((e) => console.log(e));
   };
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import "../../sass/ProductCounter.scss";
-import { checkRequest } from "../../redux/actions/products";
+import { validateProductQuantity } from "../../redux/actions/products";
 import { useDispatch, useSelector } from "react-redux";
 import { debounce } from "lodash";
 
@@ -13,10 +13,10 @@ const ProductCounter = ({ pid, min, max, isBlocked }) => {
   }
   const dispatch = useDispatch();
   const handleDecrement = () => {
-    return dispatch(checkRequest(pid, min, max, quantity - 1));
+    return dispatch(validateProductQuantity(pid, min, max, quantity - 1));
   };
   const handleIncrement = () => {
-    return dispatch(checkRequest(pid, min, max, quantity + 1));
+    return dispatch(validateProductQuantity(pid, min, max, quantity + 1));
   };
   return (
     <div className="counter">
