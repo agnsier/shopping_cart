@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
             const { products } = action.payload;
             const summary = products.map((product)=> {return {
                 pid: product.pid,
-                amount: 1,
+                quantity: 1,
                 price: product.price
             }})
             return {
@@ -51,7 +51,7 @@ export default function(state = initialState, action) {
             const summary =  state.summary.map(product => {
                 if (product.pid === pid) {
                     if(quantity <= max && quantity >= min){
-                        return {...product, amount: quantity}
+                        return {...product, quantity: quantity}
                     }
                 }
                 return product;

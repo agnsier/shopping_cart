@@ -20,7 +20,7 @@ const App = () => {
         if(summary && summary.length > 0 ){
             let initialValue = 0
             const sum  = summary.reduce((acc, curr) => {
-                return acc + (parseFloat(curr.price) * curr.amount)
+                return acc + (parseFloat(curr.price) * curr.quantity)
             }, initialValue)
             return <div className="products__summary">
                 <span>Podsumowanie</span>

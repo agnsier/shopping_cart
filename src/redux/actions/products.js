@@ -66,7 +66,6 @@ export const getProductsRequest = () => {
     }
 }
 export const checkRequest = (pid, min, max, quantity) => {
-    //TODO error handling
     return (dispatch) => {
         fetch("/api/product/check",{
             method: "POST",
