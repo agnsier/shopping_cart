@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import "../../sass/App.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsRequest } from "../../redux/actions/products";
+import {
+  getProductsRequest,
+  validateProductQuantity,
+} from "../../redux/actions/products";
 import ProductCounter from "../Products/ProductCounter";
 
 const App = () => {
@@ -25,43 +28,56 @@ const App = () => {
       </div>
     );
   }
-  const calculateSummary = () => {
+  const calculateProductsSummary = () => {
     if (summary && summary.length > 0) {
-      let initialValue = 0;
-      const sum = summary.reduce((acc, curr) => {
+      const initialValue = 0;
+      const productsSummary = summary.reduce((acc, curr) => {
         return acc + parseFloat(curr.price) * curr.quantity;
       }, initialValue);
       return (
         <div className="products__summary">
           <span>Podsumowanie</span>
-          <span>{`${sum.toFixed(2)} zł`}</span>
+          <span>{`${productsSummary.toFixed(2)} zł`}</span>
         </div>
       );
     }
   };
+  const handleUpdateQuantity = (pid, min, max, quantity) => {
+    return dispatch(validateProductQuantity(pid, min, max, quantity));
+  };
+  const renderProductItem = (product) => {
+    if (summary && summary.length > 0) {
+      const { quantity } = summary.find((item) => item.pid === product.pid);
+      const { pid, min, max, isBlocked } = product;
+      return (
+        <li className="products-list__row" key={product.pid}>
+          <span className="products-list__name">{product.name}</span>
+          <ProductCounter
+            pid={pid}
+            min={min}
+            max={max}
+            isBlocked={isBlocked}
+            quantity={quantity}
+            handleUpdateQuantity={handleUpdateQuantity}
+          />
+          <span className="products-list__price">{`${product.price} zł`}</span>
+        </li>
+      );
+    }
+  };
+  const hasProducts = products && products.list && products.list.length > 0;
   return (
     <div className="container">
       <div className="products">
         <h3 className="products__title">Lista produktów</h3>
         <ul className="products-list">
-          {products && products.list && products.list.length > 0 ? (
-            products.list.map((product) => (
-              <li className="products-list__row" key={product.pid}>
-                <span className="products-list__name">{product.name}</span>
-                <ProductCounter
-                  pid={product.pid}
-                  min={product.min}
-                  max={product.max}
-                  isBlocked={product.isBlocked}
-                />
-                <span className="products-list__price">{`${product.price} zł`}</span>
-              </li>
-            ))
+          {hasProducts ? (
+            products.list.map((product) => renderProductItem(product))
           ) : (
             <div className="centered-container">Twój koszyk jest pusty</div>
           )}
         </ul>
-        {calculateSummary()}
+        {calculateProductsSummary()}
       </div>
     </div>
   );
